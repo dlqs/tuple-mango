@@ -1,0 +1,4 @@
+*.json
+!*.json.enc
+.claude
+prompt.md

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coding Flashcards</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- Password Entry Screen -->
+        <div id="password-screen" class="screen active">
+            <div class="container">
+                <div class="logo">
+                    <h1>🧠 Coding Flashcards</h1>
+                    <p>Enter password to access your flashcards</p>
+                </div>
+                <form id="password-form" class="password-form">
+                    <input 
+                        type="password" 
+                        id="password-input" 
+                        placeholder="Enter password"
+                        required
+                    >
+                    <button type="submit" id="unlock-btn">
+                        <span class="btn-text">Unlock</span>
+                        <span class="btn-loading hidden">🔓</span>
+                    </button>
+                </form>
+                <div id="error-message" class="error-message hidden"></div>
+            </div>
+        </div>
+
+        <!-- Main Flashcard Screen -->
+        <div id="flashcard-screen" class="screen">
+            <div class="container">
+                <!-- Header -->
+                <header class="header">
+                    <div class="progress-info">
+                        <span id="card-counter">1 / 10</span>
+                        <span id="accuracy">0% correct</span>
+                    </div>
+                    <button id="shuffle-btn" class="icon-btn" title="Shuffle cards">🔀</button>
+                </header>
+
+                <!-- Flashcard -->
+                <div id="flashcard" class="flashcard">
+                    <!-- Question State -->
+                    <div id="question-state" class="card-state active">
+                        <div class="card-content">
+                            <div id="question-text" class="question-text"></div>
+                            <div id="choices" class="choices"></div>
+                        </div>
+                    </div>
+
+                    <!-- Answer State -->
+                    <div id="answer-state" class="card-state">
+                        <div class="card-content">
+                            <div class="result-indicator">
+                                <span id="result-icon"></span>
+                                <span id="result-text"></span>
+                            </div>
+                            <div id="explanation-text" class="explanation-text"></div>
+                            <button id="next-btn" class="next-btn">Next Card →</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Navigation -->
+                <nav class="nav">
+                    <button id="prev-btn" class="nav-btn" disabled>← Previous</button>
+                    <button id="restart-btn" class="nav-btn">🔄 Restart</button>
+                </nav>
+            </div>
+        </div>
+
+        <!-- Loading Screen -->
+        <div id="loading-screen" class="screen">
+            <div class="container">
+                <div class="loading">
+                    <div class="spinner"></div>
+                    <p>Decrypting flashcards...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
