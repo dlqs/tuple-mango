@@ -107,6 +107,11 @@ body {
     transition: background-color 0.2s ease;
     position: relative;
     min-height: 52px;
+    z-index: 100;
+    -webkit-tap-highlight-color: rgba(102, 126, 234, 0.3);
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
 }
 
 #unlock-btn:hover {
@@ -412,7 +417,7 @@ body {
     }
     
     .flashcard {
-        height: 600px;
+        height: 500px;
     }
     
     .card-content {
@@ -437,6 +442,17 @@ body {
     
     .logo h1 {
         font-size: 1.75rem;
+    }
+    
+    /* Ensure unlock button is properly touchable on mobile */
+    #unlock-btn {
+        min-height: 56px;
+        font-size: 18px;
+        touch-action: manipulation;
+    }
+    
+    .password-form {
+        padding: 25px;
     }
 }
 

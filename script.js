@@ -13,8 +13,36 @@ class FlashcardApp {
     }
 
     initializeApp() {
+        // Check if Web Crypto API is available
+        if (!crypto || !crypto.subtle) {
+            this.showCryptoError();
+            return;
+        }
+        
         this.bindEvents();
         this.showScreen('password-screen');
+    }
+
+    showCryptoError() {
+        const errorHtml = `
+            <div class="screen active">
+                <div class="container">
+                    <div class="logo">
+                        <h1>🔒 HTTPS Required</h1>
+                        <p>This app requires a secure connection to work properly.</p>
+                    </div>
+                    <div class="password-form">
+                        <h3>Please access this site via:</h3>
+                        <ul style="text-align: left; margin: 20px 0;">
+                            <li><strong>HTTPS</strong> (e.g., https://practice.dlqs.xyz)</li>
+                            <li><strong>Localhost</strong> (e.g., http://localhost:8080)</li>
+                        </ul>
+                        <p>The Web Crypto API requires a secure context for encryption/decryption.</p>
+                    </div>
+                </div>
+            </div>
+        `;
+        document.getElementById('app').innerHTML = errorHtml;
     }
 
     bindEvents() {
@@ -100,6 +128,11 @@ class FlashcardApp {
     }
 
     async decrypt(encryptedData, password) {
+        // Check if Web Crypto API is available
+        if (!crypto || !crypto.subtle) {
+            throw new Error('Web Crypto API not available. Please access this site over HTTPS.');
+        }
+        
         // Extract IV (first 16 bytes), auth tag (last 16 bytes), and encrypted data (middle)
         const iv = encryptedData.slice(0, 16);
         const authTag = encryptedData.slice(-16);
